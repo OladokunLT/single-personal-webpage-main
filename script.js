@@ -1,11 +1,24 @@
 const currentTimeEl = document.querySelector(".current-time");
 const currentDayEl = document.querySelector(".current-day");
-const now = new Date();
+
+const days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
 
 setInterval(() => {
-  currentTimeEl.innerHTML = `${now.toUTCString()}`;
-  //   console.log("1");
-}, 1000);
+  const now = new Date();
 
-currentDayEl.innerHTML = `${now.getDay()}`;
-console.log(now.toLocaleDateString);
+  const today = days.find((day, index) => {
+    return index == now.getUTCDay();
+  });
+
+  currentTimeEl.innerHTML = `${now.toUTCString()}`;
+
+  currentDayEl.innerHTML = `${today}`;
+}, 1000);
